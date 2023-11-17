@@ -1,11 +1,13 @@
+CODE_DIR = src/lib/code
+INC_DIR = src/lib
 CC=gcc
 CFLAGS= -Wall -g
-TARGET= main
-MAIN = main.c
-SRCS = lib/screen/screen.c
-INCLUDES=lib/screen/screen.h
+MAIN = src/main.c
+SRCS = $(CODE_DIR)/img_matrix.c $(CODE_DIR)/smoothing_filters.c
+INCLUDES=$(INC_DIR)/pixel.h $(INC_DIR)/img_matrix.h $(INC_DIR)/smoothing_filters.h
+TARGET=program
 
-$(TARGET):$(SRCS) $(INCLUDES)
+compile:$(SRCS) $(INCLUDES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(MAIN) $(SRCS)
 
 clean:
