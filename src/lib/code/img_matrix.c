@@ -1,6 +1,7 @@
 #include "../img_matrix.h"
 
 Pixel generate_pixel(){
+    // Função auxiliar para gerar pixels aleatórios
     Pixel new_pixel;
 
     new_pixel.red = rand()%256;
@@ -12,6 +13,7 @@ Pixel generate_pixel(){
 
 
 Pixel** alloc_image(unsigned int width, unsigned int height){
+    // Função para alocar memória para uma imagem
     Pixel** new_image = (Pixel**) malloc(height*sizeof(Pixel*));
 
     for(int lin=0;lin<height;lin++){
@@ -22,6 +24,7 @@ Pixel** alloc_image(unsigned int width, unsigned int height){
 }
 
 void free_image(Pixel ** img, unsigned int height){
+    // Função para limpar uma imagem da memória
     for(int lin=0;lin<height;lin++){
         free(img[lin]);
     }
@@ -30,9 +33,10 @@ void free_image(Pixel ** img, unsigned int height){
 }
 
 Pixel** random_pixels(unsigned int width, unsigned int height){
+    // Função que gera uma imagem de largura 'width' e altura 'height' com pixels aleatórios
     Pixel** random_img = alloc_image(width,height);
     
-    srand(3);
+    srand(time(NULL)); // Pode alterar a seed para gerar sempre os mesmos pixels
 
     for(int lin=0;lin<height;lin++){
         for(int col=0;col<width;col++){
@@ -44,6 +48,7 @@ Pixel** random_pixels(unsigned int width, unsigned int height){
 }
 
 void print_pixels(Pixel** img, unsigned int width, unsigned int height){
+    // Função para imprimir os dados dos pixels da imagem 
      for(int lin=0;lin<height;lin++){
         for(int col=0;col<width;col++){
             printf("(%d,%d,%d) ",img[lin][col].red,img[lin][col].green,img[lin][col].blue);
